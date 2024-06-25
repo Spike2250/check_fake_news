@@ -1,0 +1,4 @@
+{
+  "accuracy": 93.69,
+  "report": "              precision    recall  f1-score   support\n\n        FAKE       0.95      0.92      0.93       309\n        REAL       0.93      0.95      0.94       325\n\n    accuracy                           0.94       634\n   macro avg       0.94      0.94      0.94       634\nweighted avg       0.94      0.94      0.94       634\n"
+}

@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "is-news-fake"
+version = "0.1.0"
+description = ""
+authors = ["Shilov Ilia <shilov.spike2250@yandex.ru>"]
+readme = "README.md"
+packages = [
+  { include = "INF" },
+]
+
+[tool.poetry.dependencies]
+python = "~3.12"
+scikit-learn = "^1.5.0"
+pandas = "^2.2.2"
+
+
+pyside6 = "^6.7.2"
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+start-app = "INF.Scripts.start_app:main"

@@ -9,7 +9,17 @@ DATA_FILE = 'fake_news.csv'
 def load_dataset():
     # загружаем датасет
     df = pd.read_csv(f"data/{DATA_FILE}")
+    # print(df.describe())
     return df
+
+
+def split_dataset(df):
+    return train_test_split(
+        df['text'],
+        df['label'],
+        test_size=0.1, 
+        random_state=13
+    )
 
 
 def get_vectorizer():
@@ -20,9 +30,7 @@ def get_vectorizer():
 
 def split_and_prepare_dataset(df):
     # делим на данные для тренировки и тестов
-    x_train, x_test, y_train, y_test = train_test_split(
-        df['text'], df['label'],
-        test_size=0.1, random_state=13)
+    x_train, x_test, y_train, y_test = split_dataset(df)
 
     # применяем TfidfVectorizer для перевода строк в числа
     vectorizer = get_vectorizer()
@@ -33,8 +41,10 @@ def split_and_prepare_dataset(df):
 
 
 def prepare_text(text):
+    data = split_dataset(load_dataset())
     vectorizer = get_vectorizer()
-    return vectorizer.fit_transform([text])
+    vectorizer.fit_transform(data[0])
+    return vectorizer.transform([text])
 
 
 def load_data():

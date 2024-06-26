@@ -66,5 +66,5 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
         if text:
             result = self.model.predict(
                 prepare_text(text)
-            )
+            )[0]
             self.result.setText(result)

@@ -176,7 +176,7 @@ color:  rgba(50, 98, 115, 150);
 }</string>
          </property>
          <property name="text">
-          <string>Show models info in console</string>
+          <string>Show confusion matrix</string>
          </property>
         </widget>
        </item>

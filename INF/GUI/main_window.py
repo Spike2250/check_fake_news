@@ -1,4 +1,4 @@
-
+ 
 from PySide6 import QtWidgets, QtCore, QtGui
 
 from INF.GUI.UI import window
@@ -9,6 +9,7 @@ from INF.Training.training import (
     get_trained_model
 )
 from INF.Training.load_data import prepare_text
+from INF.Training.testing import print_model_info
 
 
 class Ui_FakeNews_window(QtWidgets.QMainWindow,
@@ -25,6 +26,7 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
         self.save_model.clicked.connect(self.save_current_model)
         self.load_model.clicked.connect(self.load_model_from_pc)
         self.check_news.clicked.connect(self.check_news_text)
+        self.show_info.clicked.connect(self.show_model_info)
         self.result.textChanged.connect(self.set_result_style)
 
     def check_saved_model(self):
@@ -37,12 +39,14 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
         self.set_report_info()
         self.check_news.setEnabled(True)
         self.save_model.setEnabled(True)
+        self.show_info.setEnabled(True)
 
     def load_model_from_pc(self):
         self.model, self.accuracy, self.report = load_trained_model()
         self.set_success_status_model_text()
         self.set_report_info()
         self.check_news.setEnabled(True)
+        self.show_info.setEnabled(True)
 
     def set_success_status_model_text(self):
         text = f"Model ready to work!\n"\
@@ -63,11 +67,13 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
 
 
     def check_news_text(self):
-        self.result.setText('Waiting...')
-        self.set_result_style()        
+        self.result.setText(' ')
 
         text = self.news_text.toPlainText()
         if text:
+            self.result.setText('Waiting...')
+            self.set_result_style()
+
             result = self.model.predict(
                 prepare_text(text)
             )[0]
@@ -93,3 +99,6 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
                     background-color: transparent;
                     border: none;
                 ''')
+
+    def show_model_info(self):
+        print_model_info(self.model)

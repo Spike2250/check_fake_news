@@ -284,7 +284,7 @@ class Ui_MainWindow(object):
         self.load_model.setText(QCoreApplication.translate("MainWindow", u"Load model", None))
         self.train_model.setText(QCoreApplication.translate("MainWindow", u"Train new model", None))
         self.save_model.setText(QCoreApplication.translate("MainWindow", u"Save model", None))
-        self.show_info.setText(QCoreApplication.translate("MainWindow", u"Show models info in console", None))
+        self.show_info.setText(QCoreApplication.translate("MainWindow", u"Show confusion matrix", None))
         self.model_status.setText("")
         self.process.setText("")
         self.news_text.setPlaceholderText(QCoreApplication.translate("MainWindow", u"copy the news into this field", None))

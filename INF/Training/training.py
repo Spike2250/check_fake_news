@@ -3,6 +3,7 @@ from sklearn.metrics import classification_report, accuracy_score
 import joblib
 import json
 import os
+import random
 
 from INF.Training.load_data import load_data
 
@@ -18,8 +19,8 @@ file_name = f"{MODEL_PATH}/{JSON_PATH}/{MODEL_NAME}.json"
 
 def create_model():
     return PassiveAggressiveClassifier(
-        C=0.1,
-        random_state=5
+        C=float("0." + str(random.randint(0, 9))),
+        random_state=random.randint(0, 15)
     )
 
 

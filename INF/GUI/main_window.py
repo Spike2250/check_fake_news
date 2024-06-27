@@ -25,6 +25,7 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
         self.save_model.clicked.connect(self.save_current_model)
         self.load_model.clicked.connect(self.load_model_from_pc)
         self.check_news.clicked.connect(self.check_news_text)
+        self.result.textChanged.connect(self.set_result_style)
 
     def check_saved_model(self):
         if is_there_saved_model():
@@ -62,9 +63,33 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
 
 
     def check_news_text(self):
+        self.result.setText('Waiting...')
+        self.set_result_style()        
+
         text = self.news_text.toPlainText()
         if text:
             result = self.model.predict(
                 prepare_text(text)
             )[0]
             self.result.setText(result)
+
+    def set_result_style(self):
+        match self.result.text():
+            case 'REAL':
+                self.result.setStyleSheet('''
+                    color: White;
+                    background-color: rgba(50, 98, 115, 150);
+                    border: 2px solid rgba(92, 158, 173, 255);
+                ''')
+            case 'FAKE':
+                self.result.setStyleSheet('''
+                    color: White;
+                    background-color: rgba(112, 38, 50, 150);
+                    border: 2px solid rgba(112, 38, 50, 255);
+                ''')
+            case _:
+                self.result.setStyleSheet('''
+                    color: rgba(50, 98, 115, 255);
+                    background-color: transparent;
+                    border: none;
+                ''')

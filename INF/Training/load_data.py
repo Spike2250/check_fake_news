@@ -51,8 +51,3 @@ def load_data():
     return split_and_prepare_dataset(
         load_dataset()
     )
-
-
-if __name__ == '__main__':
-    print(load_dataset()[0][4])
-    print(load_dataset()[2][4])

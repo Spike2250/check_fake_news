@@ -9,7 +9,11 @@ from INF.Training.training import (
     get_trained_model
 )
 from INF.Training.load_data import prepare_text
-from INF.Training.testing import print_model_info
+from INF.Training.testing import (
+    show_confusion_matrix,
+    show_ROCAUC,
+    show_PrecisionRecallCurve
+)
 
 
 class Ui_FakeNews_window(QtWidgets.QMainWindow,
@@ -26,7 +30,9 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
         self.save_model.clicked.connect(self.save_current_model)
         self.load_model.clicked.connect(self.load_model_from_pc)
         self.check_news.clicked.connect(self.check_news_text)
-        self.show_info.clicked.connect(self.show_model_info)
+        self.show_conf_matrix.clicked.connect(self.show_model_conf_matrix)
+        self.show_rocauc_info.clicked.connect(self.show_rocauc)
+        self.show_prc.clicked.connect(self.show_PRC)
         self.result.textChanged.connect(self.set_result_style)
 
     def check_saved_model(self):
@@ -37,16 +43,20 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
         self.model, self.accuracy, self.report = get_trained_model()
         self.set_success_status_model_text()
         self.set_report_info()
-        self.check_news.setEnabled(True)
         self.save_model.setEnabled(True)
-        self.show_info.setEnabled(True)
+        self.set_enabled_buttons()
 
     def load_model_from_pc(self):
         self.model, self.accuracy, self.report = load_trained_model()
         self.set_success_status_model_text()
         self.set_report_info()
+        self.set_enabled_buttons()
+
+    def set_enabled_buttons(self):
         self.check_news.setEnabled(True)
-        self.show_info.setEnabled(True)
+        self.show_conf_matrix.setEnabled(True)
+        self.show_rocauc_info.setEnabled(True)
+        self.show_prc.setEnabled(True)
 
     def set_success_status_model_text(self):
         text = f"Model ready to work!\n"\
@@ -100,5 +110,11 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
                     border: none;
                 ''')
 
-    def show_model_info(self):
-        print_model_info(self.model)
+    def show_model_conf_matrix(self):
+        show_confusion_matrix(self.model)
+
+    def show_rocauc(self):
+        show_ROCAUC(self.model)
+
+    def show_PRC(self):
+        show_PrecisionRecallCurve(self.model)

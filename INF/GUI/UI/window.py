@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(810, 600)
+        MainWindow.resize(1001, 611)
         MainWindow.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(238, 238, 238, 255), stop:1 rgba(190, 190, 190, 255));\n"
 "font-family: Roboto;")
         self.centralwidget = QWidget(MainWindow)
@@ -40,6 +40,64 @@ class Ui_MainWindow(object):
         self.gridLayout.setSpacing(5)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(5, 5, 5, 5)
+        self.show_conf_matrix = QPushButton(self.top_frame)
+        self.show_conf_matrix.setObjectName(u"show_conf_matrix")
+        self.show_conf_matrix.setEnabled(False)
+        self.show_conf_matrix.setStyleSheet(u"QPushButton {\n"
+"background-color: rgba(50, 98, 115, 190);\n"
+"font-size: 12pt;\n"
+"color: White;\n"
+"border: None;\n"
+"padding: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(50, 98, 115, 255);\n"
+"border: 2px solid rgba(92, 158, 173, 255);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(92, 158, 173, 255);\n"
+"border: 1px solid rgba(255, 255, 255, 255);\n"
+"}\n"
+"\n"
+"QPushButton::disabled {\n"
+"background-color:  rgba(50, 98, 115, 40);\n"
+"border: 1px solid rgba(50, 98, 115, 150);\n"
+"color:  rgba(50, 98, 115, 150);\n"
+"}")
+
+        self.gridLayout.addWidget(self.show_conf_matrix, 4, 1, 1, 1)
+
+        self.save_model = QPushButton(self.top_frame)
+        self.save_model.setObjectName(u"save_model")
+        self.save_model.setEnabled(False)
+        self.save_model.setStyleSheet(u"QPushButton {\n"
+"background-color: rgba(50, 98, 115, 190);\n"
+"font-size: 12pt;\n"
+"color: White;\n"
+"border: None;\n"
+"padding: 5px;\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(50, 98, 115, 255);\n"
+"border: 2px solid rgba(92, 158, 173, 255);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(92, 158, 173, 255);\n"
+"border: 1px solid rgba(255, 255, 255, 255);\n"
+"}\n"
+"\n"
+"QPushButton::disabled {\n"
+"background-color:  rgba(50, 98, 115, 40);\n"
+"border: 1px solid rgba(50, 98, 115, 150);\n"
+"color:  rgba(50, 98, 115, 150);\n"
+"}")
+
+        self.gridLayout.addWidget(self.save_model, 2, 1, 1, 1)
+
         self.load_model = QPushButton(self.top_frame)
         self.load_model.setObjectName(u"load_model")
         self.load_model.setEnabled(False)
@@ -97,10 +155,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.train_model, 0, 1, 1, 1)
 
-        self.save_model = QPushButton(self.top_frame)
-        self.save_model.setObjectName(u"save_model")
-        self.save_model.setEnabled(False)
-        self.save_model.setStyleSheet(u"QPushButton {\n"
+        self.show_rocauc_info = QPushButton(self.top_frame)
+        self.show_rocauc_info.setObjectName(u"show_rocauc_info")
+        self.show_rocauc_info.setEnabled(False)
+        self.show_rocauc_info.setStyleSheet(u"QPushButton {\n"
 "background-color: rgba(50, 98, 115, 190);\n"
 "font-size: 12pt;\n"
 "color: White;\n"
@@ -124,12 +182,12 @@ class Ui_MainWindow(object):
 "color:  rgba(50, 98, 115, 150);\n"
 "}")
 
-        self.gridLayout.addWidget(self.save_model, 2, 1, 1, 1)
+        self.gridLayout.addWidget(self.show_rocauc_info, 5, 1, 1, 1)
 
-        self.show_info = QPushButton(self.top_frame)
-        self.show_info.setObjectName(u"show_info")
-        self.show_info.setEnabled(False)
-        self.show_info.setStyleSheet(u"QPushButton {\n"
+        self.show_prc = QPushButton(self.top_frame)
+        self.show_prc.setObjectName(u"show_prc")
+        self.show_prc.setEnabled(False)
+        self.show_prc.setStyleSheet(u"QPushButton {\n"
 "background-color: rgba(50, 98, 115, 190);\n"
 "font-size: 12pt;\n"
 "color: White;\n"
@@ -153,7 +211,7 @@ class Ui_MainWindow(object):
 "color:  rgba(50, 98, 115, 150);\n"
 "}")
 
-        self.gridLayout.addWidget(self.show_info, 4, 1, 1, 1)
+        self.gridLayout.addWidget(self.show_prc, 6, 1, 1, 1)
 
         self.model_status = QLabel(self.top_frame)
         self.model_status.setObjectName(u"model_status")
@@ -163,7 +221,7 @@ class Ui_MainWindow(object):
 "border: none;")
         self.model_status.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.gridLayout.addWidget(self.model_status, 0, 0, 5, 1)
+        self.gridLayout.addWidget(self.model_status, 0, 0, 7, 1)
 
         self.process = QLabel(self.top_frame)
         self.process.setObjectName(u"process")
@@ -173,7 +231,7 @@ class Ui_MainWindow(object):
 "border: none;")
         self.process.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.gridLayout.addWidget(self.process, 0, 2, 5, 1)
+        self.gridLayout.addWidget(self.process, 0, 2, 7, 1)
 
 
         self.verticalLayout.addWidget(self.top_frame)
@@ -281,10 +339,12 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Is news fake?", None))
+        self.show_conf_matrix.setText(QCoreApplication.translate("MainWindow", u"Show confusion matrix", None))
+        self.save_model.setText(QCoreApplication.translate("MainWindow", u"Save model", None))
         self.load_model.setText(QCoreApplication.translate("MainWindow", u"Load model", None))
         self.train_model.setText(QCoreApplication.translate("MainWindow", u"Train new model", None))
-        self.save_model.setText(QCoreApplication.translate("MainWindow", u"Save model", None))
-        self.show_info.setText(QCoreApplication.translate("MainWindow", u"Show confusion matrix", None))
+        self.show_rocauc_info.setText(QCoreApplication.translate("MainWindow", u"Show ROCAUC-curve", None))
+        self.show_prc.setText(QCoreApplication.translate("MainWindow", u" Show precision recall curve", None))
         self.model_status.setText("")
         self.process.setText("")
         self.news_text.setPlaceholderText(QCoreApplication.translate("MainWindow", u"copy the news into this field", None))

@@ -1,0 +1,1 @@
+poetry run pyside6-uic INF/GUI/UI/window.ui > INF/GUI/UI/window.py

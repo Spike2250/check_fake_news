@@ -16,6 +16,8 @@ pandas = "^2.2.2"
 
 pyside6 = "^6.7.2"
 matplotlib = "^3.9.0"
+yellowbrick = "^1.5"
+setuptools = "^70.2.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

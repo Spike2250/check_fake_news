@@ -6,11 +6,6 @@ from sklearn.preprocessing import LabelEncoder
 from yellowbrick.classifier import ROCAUC, PrecisionRecallCurve
 
 
-def print_model_info(model):
-    show_confusion_matrix(model)
-    show_ROCAUC(model)
-
-
 def show_confusion_matrix(model):
     x_train, x_test, y_train, y_test = load_data()
     predictions = model.predict(x_test)

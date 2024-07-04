@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1001</width>
-    <height>611</height>
+    <height>756</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -75,6 +75,38 @@ color:  rgba(50, 98, 115, 150);
          </property>
          <property name="text">
           <string>Show confusion matrix</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="train_model">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+background-color: rgba(50, 98, 115, 190);
+font-size: 12pt;
+color: White;
+border: None;
+padding: 5px;
+}
+
+QPushButton::hover {
+background-color: rgba(50, 98, 115, 255);
+border: 2px solid rgba(92, 158, 173, 255);
+}
+
+QPushButton::pressed {
+background-color: rgba(92, 158, 173, 255);
+border: 1px solid rgba(255, 255, 255, 255);
+}
+
+QPushButton::disabled {
+background-color:  rgba(50, 98, 115, 40);
+border: 1px solid rgba(50, 98, 115, 150);
+color:  rgba(50, 98, 115, 150);
+}</string>
+         </property>
+         <property name="text">
+          <string>Train new model</string>
          </property>
         </widget>
        </item>
@@ -148,8 +180,11 @@ color:  rgba(50, 98, 115, 150);
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="train_model">
+       <item row="6" column="1">
+        <widget class="QPushButton" name="show_prc">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
 background-color: rgba(50, 98, 115, 190);
@@ -176,7 +211,7 @@ color:  rgba(50, 98, 115, 150);
 }</string>
          </property>
          <property name="text">
-          <string>Train new model</string>
+          <string> Show precision recall curve</string>
          </property>
         </widget>
        </item>
@@ -215,8 +250,8 @@ color:  rgba(50, 98, 115, 150);
          </property>
         </widget>
        </item>
-       <item row="6" column="1">
-        <widget class="QPushButton" name="show_prc">
+       <item row="7" column="1">
+        <widget class="QPushButton" name="show_dt">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -246,11 +281,11 @@ color:  rgba(50, 98, 115, 150);
 }</string>
          </property>
          <property name="text">
-          <string> Show precision recall curve</string>
+          <string>Show Discrimination Threshold</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="0" rowspan="7">
+       <item row="0" column="0" rowspan="8">
         <widget class="QLabel" name="model_status">
          <property name="styleSheet">
           <string notr="true">color: #326273;
@@ -266,7 +301,7 @@ border: none;</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="2" rowspan="7">
+       <item row="0" column="2" rowspan="8">
         <widget class="QLabel" name="process">
          <property name="styleSheet">
           <string notr="true">color: #326273;

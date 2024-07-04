@@ -3,7 +3,11 @@ from INF.Training.load_data import load_data
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from sklearn.preprocessing import LabelEncoder
-from yellowbrick.classifier import ROCAUC, PrecisionRecallCurve
+from yellowbrick.classifier import (
+    ROCAUC,
+    PrecisionRecallCurve,
+    DiscriminationThreshold
+)
 
 
 def show_confusion_matrix(model):
@@ -36,7 +40,18 @@ def show_PrecisionRecallCurve(model):
     le = LabelEncoder()
     y_test = le.fit_transform(y_test)
 
-    viz = PrecisionRecallCurve(model)
-    viz.fit(x_train, y_train)
-    viz.score(x_test, y_test)
-    viz.show()
+    visualizer = PrecisionRecallCurve(model)
+    visualizer.fit(x_train, y_train)
+    visualizer.score(x_test, y_test)
+    visualizer.show()
+
+
+def show_DiscriminationThreshold(model):
+    x_train, x_test, y_train, y_test = load_data()
+
+    le = LabelEncoder()
+    y_train = le.fit_transform(y_train)
+
+    visualizer = DiscriminationThreshold(model)
+    visualizer.fit(x_train, y_train)
+    visualizer.show()

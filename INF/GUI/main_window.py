@@ -12,7 +12,8 @@ from INF.Training.load_data import prepare_text
 from INF.Training.testing import (
     show_confusion_matrix,
     show_ROCAUC,
-    show_PrecisionRecallCurve
+    show_PrecisionRecallCurve,
+    show_DiscriminationThreshold
 )
 
 
@@ -33,6 +34,7 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
         self.show_conf_matrix.clicked.connect(self.show_model_conf_matrix)
         self.show_rocauc_info.clicked.connect(self.show_rocauc)
         self.show_prc.clicked.connect(self.show_PRC)
+        self.show_dt.clicked.connect(self.show_DT)
         self.result.textChanged.connect(self.set_result_style)
 
     def check_saved_model(self):
@@ -57,6 +59,7 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
         self.show_conf_matrix.setEnabled(True)
         self.show_rocauc_info.setEnabled(True)
         self.show_prc.setEnabled(True)
+        self.show_dt.setEnabled(True)
 
     def set_success_status_model_text(self):
         text = f"Model ready to work!\n"\
@@ -118,3 +121,6 @@ class Ui_FakeNews_window(QtWidgets.QMainWindow,
 
     def show_PRC(self):
         show_PrecisionRecallCurve(self.model)
+
+    def show_DT(self):
+        show_DiscriminationThreshold(self.model)
